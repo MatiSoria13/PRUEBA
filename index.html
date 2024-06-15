@@ -75,20 +75,24 @@
     <pre id="resultado"></pre>
 
     <script>
-        document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", function(event) {
-                event.preventDefault();
-                const formData = new FormData(form);
-                fetch("productos.php", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
-                });
-            });
+       document.querySelectorAll("form").forEach(form => {
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        fetch("productos.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            console.error("Error:", error);
         });
+    });
+});
+
     </script>
 </body>
 </html>
